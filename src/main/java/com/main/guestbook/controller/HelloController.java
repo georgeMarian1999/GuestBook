@@ -11,4 +11,9 @@ public class HelloController {
     public String hello() {
         return "Hello world";
     }
+
+    @GetMapping("/welcome")
+    public String welcome() {
+        return "Welcome to azure";
+    }
 }
