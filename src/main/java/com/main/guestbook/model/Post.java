@@ -1,18 +1,51 @@
 package com.main.guestbook.model;
 
 import com.azure.data.tables.implementation.TablesImpl;
+import org.apache.tomcat.jni.Local;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
-public class Post  {
+
+public class Post  implements Serializable {
     private String partitionKey;
     private String rowKey;
     private String title;
     private String text;
-    private String file;
-    private Date date;
 
-    public Post(String title, String text, Date date) {
+    private byte[] file;
+    private LocalDateTime date;
+
+    public Post() {
+
+    }
+
+    public Post(String partitionKey, String rowKey, String title, String text, byte[] file, LocalDateTime date) {
+        this.partitionKey = partitionKey;
+        this.rowKey = rowKey;
+        this.title = title;
+        this.text = text;
+        this.file = file;
+        this.date = date;
+    }
+
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
+
+    public Post(String title, String text, LocalDateTime date) {
+        this.title = title;
+        this.text = text;
+        this.date = date;
+    }
+
+    public Post(String partitionKey, String rowKey, String title, String text, LocalDateTime date) {
+        this.partitionKey = partitionKey;
+        this.rowKey = rowKey;
         this.title = title;
         this.text = text;
         this.date = date;
@@ -50,19 +83,11 @@ public class Post  {
         this.text = text;
     }
 
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
-
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 }
